@@ -1,8 +1,3 @@
-Still building the workspace index, response may be less accurate.
-
-Certainly! Here is the updated README with the detailed installation instructions in markdown format:
-
-```markdown
 ## Graphical Calculator
 
 A graphical calculator application built using the SFML (Simple and Fast Multimedia Library). This application provides a user-friendly interface for performing basic arithmetic operations and supports multiple operands and operations in a single expression.

@@ -43,3 +43,30 @@ A graphical calculator application built using the SFML (Simple and Fast Multime
    ```sh
    git clone https://github.com/yourusername/graphical-calculator.git
    cd graphical-calculator
+   ```
+2. **Ensure you have the SFML library installed**. You can download it from the [official SFML website](https://www.sfml-dev.org/download.php).
+
+3. **Ensure you have the following files in the `Calculator` directory**:
+   - `icon/C-icon.png` (the icon image file)
+   - `fonts/Roboto-Light.ttf` (the font file)
+
+4. **Compile the program**:
+   - First, compile the source file to an object file:
+     ```sh
+     g++ -c main.cpp -Isrc/include
+     ```
+   - Then, link the object file to create the executable:
+     ```sh
+     g++ main.o -o calculator -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system
+     ```
+
+5. **Run the executable**:
+   ```sh
+   ./calculator
+   ```
+
+## 💻 Usage
+
+- **Basic Operations**: Click on the buttons to input digits and operators. The display will show the current input.
+- **Clear Input**: Click the "C" button to clear the current input.
+- **Calculate Result**: Click the "=" button to evaluate the expression and display the result.

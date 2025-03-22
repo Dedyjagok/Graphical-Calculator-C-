@@ -51,19 +51,23 @@ A graphical calculator application built using the SFML (Simple and Fast Multime
    - `fonts/Roboto-Light.ttf` (the font file)
 
 4. **Compile the program**:
-   - First, compile the source file to an object file:
+   - Option 1: Compile manually:
      ```sh
      g++ -c main.cpp -Isrc/include
-     ```
-   - Then, link the object file to create the executable:
-     ```sh
      g++ main.o -o calculator -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system
      ```
+   - Option 2: Use the provided batch file (Windows):
+     ```sh
+     compile.bat
+     ```
+     This will automatically compile the code and generate the calculator.exe file for you.
 
 5. **Run the executable**:
    ```sh
    ./calculator
    ```
+   
+   On Windows, you can also double-click the calculator.exe file in the Calculator directory.
 
 ## 💻 Usage
 

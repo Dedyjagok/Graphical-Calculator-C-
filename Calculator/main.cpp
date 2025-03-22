@@ -107,6 +107,8 @@ private:
                 window.close();
             } else if (event.type == sf::Event::MouseButtonPressed) {
                 handleMouseClick(event.mouseButton.x, event.mouseButton.y);
+            } else if (event.type == sf::Event::KeyPressed) {
+                handleKeyPress(event.key.code);
             }
         }
     }
@@ -128,9 +130,16 @@ private:
     }
 
     void appendInput(const std::string& input) {
+        // If input is reset and the new input is a number or decimal, clear the existing input
         if (resetInput) {
-            currentInput.clear();
-            resetInput = false;
+            if (input == "+" || input == "-" || input == "*" || input == "/") {
+                // If input is an operator, keep the previous result
+                resetInput = false;
+            } else {
+                // If input is a digit or decimal, clear the previous result
+                currentInput.clear();
+                resetInput = false;
+            }
         }
         currentInput += input;
         updateDisplay();
@@ -234,6 +243,30 @@ private:
         }
 
         return values.top();
+    }
+    void handleKeyPress(sf::Keyboard::Key key) {
+        // Handle numeric keys (both top row and numpad)
+        if (key == sf::Keyboard::Num0 || key == sf::Keyboard::Numpad0) appendInput("0");
+        else if (key == sf::Keyboard::Num1 || key == sf::Keyboard::Numpad1) appendInput("1");
+        else if (key == sf::Keyboard::Num2 || key == sf::Keyboard::Numpad2) appendInput("2");
+        else if (key == sf::Keyboard::Num3 || key == sf::Keyboard::Numpad3) appendInput("3");
+        else if (key == sf::Keyboard::Num4 || key == sf::Keyboard::Numpad4) appendInput("4");
+        else if (key == sf::Keyboard::Num5 || key == sf::Keyboard::Numpad5) appendInput("5");
+        else if (key == sf::Keyboard::Num6 || key == sf::Keyboard::Numpad6) appendInput("6");
+        else if (key == sf::Keyboard::Num7 || key == sf::Keyboard::Numpad7) appendInput("7");
+        else if (key == sf::Keyboard::Num8 || key == sf::Keyboard::Numpad8) appendInput("8");
+        else if (key == sf::Keyboard::Num9 || key == sf::Keyboard::Numpad9) appendInput("9");
+        
+        // Handle operators
+        else if (key == sf::Keyboard::Add) appendInput("+");
+        else if (key == sf::Keyboard::Subtract) appendInput("-");
+        else if (key == sf::Keyboard::Multiply) appendInput("*");
+        else if (key == sf::Keyboard::Divide) appendInput("/");
+        
+        // Handle special keys
+        else if (key == sf::Keyboard::Period) appendInput(".");
+        else if (key == sf::Keyboard::Return || key == sf::Keyboard::Equal) calculateResult();
+        else if (key == sf::Keyboard::Escape || key == sf::Keyboard::BackSpace) clearInput();
     }
 };
 
